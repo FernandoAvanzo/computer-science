@@ -4,6 +4,7 @@ import unittest
 from unittest import TestCase
 from tspcheck import *
 
+
 class ParseTspFileTest(TestCase):
     def test_parse_tsp_file(self):
         g = parse_tsp(['1 1 1',
@@ -15,6 +16,7 @@ class ParseTspFileTest(TestCase):
                                    [3, 3, INF, 4],
                                    [6, 4, 4, INF]])
 
+
 class FakeTestResult(object):
     def __init__(self):
         self.errors = []
@@ -24,6 +26,7 @@ class FakeTestResult(object):
 
     def success(self):
         return not self.errors
+
 
 class TspCheckTest(TestCase):
     def setUp(self):
@@ -58,6 +61,7 @@ class TspCheckTest(TestCase):
         test_result = FakeTestResult()
         tsp_check(test_result, self.g, [1, 2, 3, 4, 1], 18)
         self.assertFalse(test_result.success())
+
 
 if __name__ == '__main__':
     unittest.main()

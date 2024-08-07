@@ -8,15 +8,17 @@ from time import time
 from progunit import *
 
 DEFAULT_FILE_EXP_EXT = ".out"
-DEFAULT_PROG_RUN="/run"
-DEFAULT_PROG_BUILD="/build"
-DEFAULT_LOG_FILE="testes.log"
+DEFAULT_PROG_RUN = "/run"
+DEFAULT_PROG_BUILD = "/build"
+DEFAULT_LOG_FILE = "testes.log"
+
 
 def run_progs_cases(check_fun, progs, cases, reporter):
     progs = [p for p in progs if p.build()]
     test_cases = create_test_cases(check_fun, progs, cases)
     runner = Runner(test_cases, reporter)
     runner.run()
+
 
 def create_test_cases(check_fun, progs, cases):
     tests = []
@@ -27,6 +29,7 @@ def create_test_cases(check_fun, progs, cases):
             check = case.create_check(check_fun)
             tests.append(TestCase(description, program, check))
     return tests
+
 
 class Case(object):
     def __init__(self, input, expected):
@@ -45,7 +48,9 @@ class Case(object):
                              self.get_abs_input(),
                              self.get_abs_expected(),
                              program_result)
+
         return check
+
 
 class ProgramInfo(object):
     def __init__(self, cmd_build, cmd_run):
@@ -59,38 +64,47 @@ class ProgramInfo(object):
 
     def build(self):
         if self.cmd_build:
-            print u'Executando', self.cmd_build_str
+            print
+            u'Executando', self.cmd_build_str
             if subprocess.call(self.cmd_build) < 0:
-                print u'Compilação', self.cmd_build_str, u'falhou. IGNORANDO', self.cmd_run_str
+                print
+                u'Compilação', self.cmd_build_str, u'falhou. IGNORANDO', self.cmd_run_str
                 return False
         return True
-    
+
     def create_program(self, params=[]):
         def program():
             return exec_program(self.cmd_run + params)
+
         return program
+
 
 def load_cases(path, in_ext, exp_ext=DEFAULT_FILE_EXP_EXT):
     def has_in_ext(path):
         return os.path.isfile(path) and path.endswith(in_ext)
+
     return [Case(input, replace_ext(input, exp_ext))
-                for input in sorted(find_files(path, has_in_ext))]
+            for input in sorted(find_files(path, has_in_ext))]
+
 
 def load_progs_info(path, run_params=[],
-                          prog_build=DEFAULT_PROG_BUILD,
-                          prog_run=DEFAULT_PROG_RUN):
+                    prog_build=DEFAULT_PROG_BUILD,
+                    prog_run=DEFAULT_PROG_RUN):
     def is_prog_run(path):
         return path.endswith(prog_run) and is_executable(path)
+
     def get_build_cmd(run):
         build = run[:-len(prog_run)] + prog_build
         return [build] if is_executable(build) else []
+
     return [ProgramInfo(get_build_cmd(run), [run] + run_params)
-                for run in sorted(find_files(path, is_prog_run))]
+            for run in sorted(find_files(path, is_prog_run))]
 
 
 # utilities
 def is_executable(path):
     return os.path.isfile(path) and os.access(path, os.X_OK)
+
 
 def find_files(path, filter):
     files = []
@@ -100,6 +114,7 @@ def find_files(path, filter):
             if filter(f):
                 files.append(f)
     return files
+
 
 def replace_ext(path, new_ext):
     base, _ = os.path.splitext(path)

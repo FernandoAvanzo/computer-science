@@ -5,6 +5,7 @@ import codecs
 import traceback
 from time import time
 
+
 class ProgramResult(object):
     def __init__(self, retcode, out, err):
         self.retcode = retcode
@@ -32,25 +33,25 @@ class TestCase(object):
 
 
 class ResultError(object):
-    def __init__(self, msg, expected = None, actual = None):
+    def __init__(self, msg, expected=None, actual=None):
         self.msg = msg
         self.expected = expected
         self.actual = actual
-        #TODO: if expected is None?
+        # TODO: if expected is None?
         if (self.expected == None and self.actual != None) or (self.expected == None and self.actual != None):
             raise Exception()
-            
+
     def simple(self):
         return not self.expected
 
 
 class TestResult(object):
-    def __init__(self, test_case, program_result = None):
+    def __init__(self, test_case, program_result=None):
         self.program_result = program_result
         self.test_case = test_case
         self.errors = []
-    
-    def add_error(self, msg, expected = None, actual = None):
+
+    def add_error(self, msg, expected=None, actual=None):
         self.errors.append(ResultError(msg, expected, actual))
 
     def success(self):
@@ -61,7 +62,7 @@ class Runner(object):
     def __init__(self, test_cases, reporter):
         self.test_cases = test_cases
         self.reporter = reporter
-    
+
     def run(self):
         self.reporter.start()
         for test_case in self.test_cases:
@@ -100,7 +101,7 @@ class Reporter(object):
 
 
 class SimpleReporter(Reporter):
-    def __init__(self, logfile, out = sys.stdout):
+    def __init__(self, logfile, out=sys.stdout):
         Reporter.__init__(self)
         self.logfile = logfile
         self._out = out
@@ -122,14 +123,14 @@ class SimpleReporter(Reporter):
         self._write_out(s)
         self._write_log(s)
 
-    def _write_log(self, s, level = 0):
+    def _write_log(self, s, level=0):
         self._log.write(u' ' * level * 2 + s)
         self._log.flush()
 
     def _write_log_lines(self, lines, level):
         for line in lines:
             self._write_log(line + '\n', level)
-    
+
     def _write_out(self, s):
         self._out.write(s)
         self._out.flush()
@@ -141,17 +142,17 @@ class SimpleReporter(Reporter):
         self._write_out('Fail (see "%s" file)\n' % self.logfile)
         self._write_log('Fail\n')
         if test_result.program_result:
-            self._write_log('** STDOUT **\n', level = 1)
-            self._write_log_lines(test_result.program_result.out.splitlines(), level = 2)
-            self._write_log('** STDERR **\n', level = 1)
-            self._write_log_lines(test_result.program_result.err.splitlines(), level = 2)
-        self._write_log('** ERRORS **\n', level = 1)
+            self._write_log('** STDOUT **\n', level=1)
+            self._write_log_lines(test_result.program_result.out.splitlines(), level=2)
+            self._write_log('** STDERR **\n', level=1)
+            self._write_log_lines(test_result.program_result.err.splitlines(), level=2)
+        self._write_log('** ERRORS **\n', level=1)
         for error in test_result.errors:
-            self._write_log(error.msg + '\n', level = 2)
+            self._write_log(error.msg + '\n', level=2)
             if not error.simple():
-                #TODO: if expected or actual is multiline
-                self._write_log(u'Expected: ' + unicode(error.expected) + '\n', level = 3)
-                self._write_log(u'Result  : ' + unicode(error.actual) + '\n', level = 3)
+                # TODO: if expected or actual is multiline
+                self._write_log(u'Expected: ' + unicode(error.expected) + '\n', level=3)
+                self._write_log(u'Result  : ' + unicode(error.actual) + '\n', level=3)
 
 
 # Stopwatch
@@ -178,6 +179,7 @@ class Stopwatch(object):
             return '%ds %s' % (int(elapsed), self._ms(elapsed % 1))
         else:
             return '%dm %ds %s' % (int(elapsed) / 60, int(elapsed) % 60, self._ms(elapsed % 1))
+
 
 # utilities
 def exec_program(cmd):
