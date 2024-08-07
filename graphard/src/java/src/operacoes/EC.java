@@ -50,24 +50,6 @@ public class EC {
                      ciclo = e.isNoCiclo();
                      System.out.println("teste");
                 }
-                /*
-                 boolean ciclo;
-                if(u.getFirstAresta() != null){
-                    if(u.getFirstAresta().getOrigem().isNoCiclo()&&u.getFirstAresta().getDestino().isNoCiclo()){
-                        ciclo = u.getFirstAresta().getDestino().isNoCiclo();
-                        u.getFirstAresta().setNoCiclo(true);
-                    }else{
-                        ciclo = false;
-                    }
-                }else{ciclo = false;}
-                while (ciclo) {
-                     Aresta e;
-                     e = u.RemoveAresta();
-                     ciclo = e.isNoCiclo();
-                     System.out.println("teste");
-                }
-                */
-                
             }
         }
     }
