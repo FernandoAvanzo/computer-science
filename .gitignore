@@ -2,6 +2,8 @@
 .idea/*
 venv
 venv/*
+out
+out/*
 graphard/graphard.iml
 graphard/testador/testador.iml
 graphard/src/c/c.iml
