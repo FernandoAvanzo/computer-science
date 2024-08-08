@@ -14,10 +14,8 @@ class ProgramResult(object):
 
 
 class TestCase(object):
-    def __init__(self, description, program, check):
-        self.description = description
+    def __init__(self, program):
         self.program = program
-        self.check = check
 
     def run(self):
         try:

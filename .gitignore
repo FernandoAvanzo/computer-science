@@ -23,3 +23,5 @@
 /DijkstrasAlgorithmKotlin/build/*
 /DijkstrasAlgorithmKotlin/.kotlin/
 /DijkstrasAlgorithmKotlin/.kotlin/*
+/graphard/src/java/target/
+/graphard/src/java/target/*

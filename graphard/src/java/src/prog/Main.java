@@ -40,8 +40,8 @@ public class Main {
             MST(args[1]);
         
         case "ec":
-            System.out.println("roudou");
-            EC("C:\\graphard\\testes\\ec\\10.g");
+            System.out.println("rodou");
+            EC("~/Projects/computer-science/graphard/testes/ec/10.g");
                
         default: break;
         }

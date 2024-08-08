@@ -5,6 +5,7 @@
 - MST Minimum Spanning Trees
 - BFS Breadth-first search
 - DFS Depth-first search
-- EC Edges Classificator 
+- EC Edge Connections 
 - TS Topological sort
+- TSP Traveling Salesman problem
 - SCC Strongly connected components
