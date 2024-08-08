@@ -1,15 +1,16 @@
-.idea
-.idea/*
-venv
-venv/*
-out
-out/*
+/.idea
+/.idea/*
+/venv
+/venv/*
+/out
+/out/*
 /computer-science.iml
 /graphard/graphard.iml
 /graphard/testador/testador.iml
 /graphard/src/c/c.iml
 /graphard/src/cpp/cpp.iml
 /graphard/src/csharp/csharp.iml
+/graphard/src/java/prog.iml
 /graphard/src/pascal/pascal.iml
 /graphard/src/python/python.iml
 /graphard/src/python3/python3.iml
@@ -18,3 +19,5 @@ out/*
 /DijkstrasAlgorithmKotlin/.gradle/
 /DijkstrasAlgorithmKotlin/.gradle/*
 
+/DijkstrasAlgorithmKotlin/build/
+/DijkstrasAlgorithmKotlin/build/*
