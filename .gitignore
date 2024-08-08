@@ -21,3 +21,5 @@
 
 /DijkstrasAlgorithmKotlin/build/
 /DijkstrasAlgorithmKotlin/build/*
+/DijkstrasAlgorithmKotlin/.kotlin/
+/DijkstrasAlgorithmKotlin/.kotlin/*
