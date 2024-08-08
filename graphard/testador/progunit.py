@@ -5,6 +5,8 @@ import codecs
 import traceback
 from time import time
 
+from pyparsing import unicode
+
 
 class ProgramResult(object):
     def __init__(self, retcode, out, err):
